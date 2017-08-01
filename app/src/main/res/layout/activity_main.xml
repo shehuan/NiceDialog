@@ -13,38 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="showDialog0"
-        android:text="弹框0" />
+        android:text="分享" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="showDialog1"
-        android:text="弹框1" />
+        android:text="好友设置" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:onClick="showDialog2"
-        android:text="弹框2" />
+        android:text="评论" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="showDialog3"
-        android:text="弹框3" />
+        android:text="广告" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:onClick="showDialog4"
-        android:text="弹框4" />
+        android:text="加载提示" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="showDialog5"
-        android:text="弹框5" />
+        android:text="确认" />
 </LinearLayout>

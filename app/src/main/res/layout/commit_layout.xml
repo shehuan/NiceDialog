@@ -4,23 +4,49 @@
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="8dp">
 
     <EditText
-        android:id="@+id/edit_frame"
+        android:id="@+id/edit_input"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/edit__bg"
         android:gravity="top"
-        android:padding="5dp"
+       android:padding="10dp"
         android:textSize="14sp" />
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="60dp"
+        android:gravity="center_vertical">
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/at"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/icon_at" />
 
+        <ImageView
+            android:id="@+id/emoji_smile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/at"
+            android:background="@drawable/icon_emoji_smile" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/green_shape_corner"
+            android:paddingBottom="5dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="5dp"
+            android:text="发表评论"
+            android:textColor="#00bb29" />
+    </RelativeLayout>
 </LinearLayout>

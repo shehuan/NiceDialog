@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.othershe.nicedialog.NiceDialog;
@@ -51,22 +52,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showDialog2(View view) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(new View(this), 0);
         new NiceDialog()
                 .setLayoutId(R.layout.commit_layout)
                 .setConvertListener(new ViewConvertListener() {
                     @Override
                     public void convertView(ViewHolder holder, final DialogFragment dialog) {
-
+                        final EditText editText = holder.getView(R.id.edit_input);
+                        editText.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.showSoftInput(editText, 0);
+                            }
+                        });
                     }
                 })
                 .setShowBottom(true)
+                .setAnimStyle(R.style.EnterExitAnimation)
                 .show(getSupportFragmentManager());
     }
 
     public void showDialog3(View view) {
-
+        new NiceDialog()
+                .setLayoutId(R.layout.ad_layout)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder holder, final DialogFragment dialog) {
+                        holder.setOnClickListener(R.id.close, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setWidth(200)
+                .setOutCancel(false)
+                .setAnimStyle(R.style.EnterExitAnimation)
+                .show(getSupportFragmentManager());
     }
 
 

@@ -6,11 +6,5 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:windowAnimationStyle">@style/EnterExitAnimation</item>
-    </style>
-
-    <style name="EnterExitAnimation" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/enter_anim</item>
-        <item name="android:windowExitAnimation">@anim/exit_anim</item>
     </style>
 </resources>

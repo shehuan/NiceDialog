@@ -1,12 +1,15 @@
 package com.othershe.test;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
+import com.othershe.nicedialog.NiceDialog;
 import com.othershe.nicedialog.ViewConvertListener;
-import com.othershe.nicedialog.NiceDialog1;
 import com.othershe.nicedialog.ViewHolder;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,16 +20,68 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void showDialog0(View view) {
+        new NiceDialog()
+                .setLayoutId(R.layout.share_layout)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder holder, final DialogFragment dialog) {
 
-    public void showDialog(View view) {
-//        new MyDialog().show(getSupportFragmentManager(), "");
+                    }
+                })
+                .setDimAmount(0.3f)
+                .setShowBottom(true)
+                .setAnimStyle(R.style.EnterExitAnimation)
+                .show(getSupportFragmentManager());
+    }
 
-        new NiceDialog1()
-                .setLayoutId(R.layout.test)
-                .setOutCancel(false)
-                .setMargin(50)
-                .setDimAmount(0.2f)
-                .setShowBottom(false)
+    public void showDialog1(View view) {
+        new NiceDialog()
+                .setLayoutId(R.layout.friend_set_layout)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder holder, final DialogFragment dialog) {
+
+                    }
+                })
+                .setShowBottom(true)
+                .setHeight(320)
+                .setAnimStyle(R.style.EnterExitAnimation)
+                .show(getSupportFragmentManager());
+    }
+
+    public void showDialog2(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(new View(this), 0);
+        new NiceDialog()
+                .setLayoutId(R.layout.commit_layout)
+                .setConvertListener(new ViewConvertListener() {
+                    @Override
+                    public void convertView(ViewHolder holder, final DialogFragment dialog) {
+
+                    }
+                })
+                .setShowBottom(true)
+                .show(getSupportFragmentManager());
+    }
+
+    public void showDialog3(View view) {
+
+    }
+
+
+    public void showDialog4(View view) {
+        new NiceDialog()
+                .setLayoutId(R.layout.loading_layout)
+                .setWidth(100)
+                .setHeight(100)
+                .setDimAmount(0)
+                .show(getSupportFragmentManager());
+    }
+
+    public void showDialog5(View view) {
+        new NiceDialog()
+                .setLayoutId(R.layout.confirm_layout)
                 .setConvertListener(new ViewConvertListener() {
                     @Override
                     public void convertView(ViewHolder holder, final DialogFragment dialog) {
@@ -36,25 +91,41 @@ public class MainActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
+
+                        holder.setOnClickListener(R.id.ok, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "操作成功！", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        });
                     }
-                }).show(getSupportFragmentManager());
+                })
+                .setMargin(60)
+                .setOutCancel(false)
+                .show(getSupportFragmentManager());
     }
-//    public static class MyDialog extends NiceDialog {
-//
+
+//    public static class MyDialog extends BaseNiceDialog {
 //        @Override
-//        public int initLayoutId() {
-//            return R.layout.test;
+//        public void onCreate(@Nullable Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
 //        }
 //
 //        @Override
-//        public void convertView(ViewHolder holder) {
+//        public int intLayoutId() {
+//            return R.layout.commit_layout;
+//        }
+//
+//        @Override
+//        public void convertView(ViewHolder holder, final DialogFragment dialog) {
+//            holder.setText(R.id.item1, "现金支付");
 //            holder.setOnClickListener(R.id.cancel, new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
-//                    dismiss();
+//                    dialog.dismiss();
 //                }
 //            });
 //        }
-//
 //    }
 }

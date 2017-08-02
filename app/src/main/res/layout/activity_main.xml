@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="showDialog3"
-        android:text="广告" />
+        android:text="红包" />
 
     <Button
         android:layout_width="match_parent"
@@ -48,5 +48,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="showDialog5"
-        android:text="确认" />
+        android:text="确定-0" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="showDialog6"
+        android:text="确定-1" />
 </LinearLayout>

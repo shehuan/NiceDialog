@@ -14,10 +14,10 @@ import android.view.WindowManager;
 
 public abstract class BaseNiceDialog extends DialogFragment {
 
-    private int margin;
+    private int margin;//
     private int width;
     private int height;
-    private float dimAmount = 0.4f;
+    private float dimAmount = 0.5f;
     private boolean showBottom;
     private boolean outCancel = true;
     @StyleRes
@@ -25,7 +25,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
 
     public abstract int intLayoutId();
 
-    public abstract void convertView(ViewHolder holder, DialogFragment dialog);
+    public abstract void convertView(ViewHolder holder, BaseNiceDialog dialog);
 
 
     @Override
@@ -51,21 +51,28 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private void initParams() {
         Window window = getDialog().getWindow();
         if (window != null) {
+            //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
             WindowManager.LayoutParams lp = window.getAttributes();
+            //调节灰色背景透明度[0-1]，默认0.5f
+            lp.dimAmount = dimAmount;
+            //是否在底部显示
             if (showBottom) {
                 lp.gravity = Gravity.BOTTOM;
             }
-
+            //设置dialog宽度
             if (width == 0) {
                 lp.width = Utils.getScreenWidth(getContext()) - 2 * Utils.dp2px(getContext(), margin);
             } else {
                 lp.width = Utils.dp2px(getContext(), width);
             }
+            //设置dialog高度
+            if (height == 0) {
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            } else {
+                lp.height = Utils.dp2px(getContext(), height);
+            }
 
-            lp.height = height == 0 ? WindowManager.LayoutParams.WRAP_CONTENT : Utils.dp2px(getContext(), height);
-
-            lp.dimAmount = dimAmount;//调节灰色背景透明度[0-1]，默认0.4f
             window.setAttributes(lp);
         }
         setCancelable(outCancel);
@@ -107,7 +114,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
-    public void show(FragmentManager manager) {
+    public BaseNiceDialog show(FragmentManager manager) {
         super.show(manager, String.valueOf(System.currentTimeMillis()));
+        return this;
     }
 }

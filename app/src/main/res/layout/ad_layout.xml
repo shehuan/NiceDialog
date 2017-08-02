@@ -7,15 +7,15 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="200dp"
+        android:layout_width="210dp"
         android:layout_height="260dp"
-        android:background="#ff0000" />
+        android:background="@drawable/red_packet_bg" />
 
     <ImageView
         android:id="@+id/close"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/icon_close" />
 
 </LinearLayout>

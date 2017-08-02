@@ -1,7 +1,6 @@
 package com.othershe.nicedialog;
 
 import android.support.annotation.LayoutRes;
-import android.support.v4.app.DialogFragment;
 
 public class NiceDialog extends BaseNiceDialog {
 
@@ -9,14 +8,19 @@ public class NiceDialog extends BaseNiceDialog {
     private int layoutId;
     private ViewConvertListener convertListener;
 
+    public static NiceDialog init() {
+        return new NiceDialog();
+    }
+
     @Override
     public int intLayoutId() {
         return layoutId;
     }
 
+
     @Override
-    public void convertView(ViewHolder holder, DialogFragment dialog) {
-        if (convertListener != null){
+    public void convertView(ViewHolder holder, BaseNiceDialog dialog) {
+        if (convertListener != null) {
             convertListener.convertView(holder, dialog);
         }
     }

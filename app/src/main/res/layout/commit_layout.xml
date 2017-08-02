@@ -14,7 +14,8 @@
         android:layout_height="100dp"
         android:background="@drawable/edit__bg"
         android:gravity="top"
-       android:padding="10dp"
+        android:hint="说你想说的..."
+        android:padding="10dp"
         android:textSize="14sp" />
 
     <RelativeLayout

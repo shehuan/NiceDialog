@@ -3,24 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/white_round_corner_bg"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/title"
         style="@style/TextStyle"
-        android:layout_marginTop="10dp"
-        android:text="提示"
+        android:layout_marginTop="15dp"
+        android:text="--"
         android:textColor="#333333" />
 
     <TextView
+        android:id="@+id/message"
         style="@style/TextStyle"
-        android:layout_marginTop="10dp"
-        android:text="确认进行此操作吗？" />
+        android:layout_marginTop="15dp"
+        android:text="---" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="#e6e6e6" />
 
     <LinearLayout
@@ -30,8 +32,7 @@
         <TextView
             android:id="@+id/cancel"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:text="取消"
@@ -45,11 +46,10 @@
         <TextView
             android:id="@+id/ok"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="确认"
+            android:text="确定"
             android:textColor="#333333" />
 
     </LinearLayout>

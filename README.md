@@ -27,21 +27,21 @@ dependencies {
 **Step 3. 配置、展示dialog**
 ```java
 NiceDialog.init()
-          .setLayoutId(R.layout.dialog)
-          .setConvertListener(new ViewConvertListener() {
+          .setLayoutId(R.layout.dialog)     //设置dialog布局文件
+          .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
               @Override
               public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
 
               }
           })
-          .setDimAmount(0.3f) //调节灰色背景透明度[0-1]，默认0.5f
-          .setShowBottom(true) //是否在底部显示dialog，默认flase
-          .setMargin() //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
-          .setWidth() //dialog宽度（单位：dp），默认为屏幕宽度
-          .setHeight() //dialog高度（单位：dp），默认为WRAP_CONTENT
-          .setOutCancel(false) //点击dialog外是否可取消，默认true
-          .setAnimStyle(R.style.EnterExitAnimation) //设置dialog进入、退出的动画style
-          .show(getSupportFragmentManager()); //显示dialog
+          .setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
+          .setShowBottom(true)     //是否在底部显示dialog，默认flase
+          .setMargin()     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
+          .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度
+          .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
+          .setOutCancel(false)     //点击dialog外是否可取消，默认true
+          .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style
+          .show(getSupportFragmentManager());     //显示dialog
 ```
 **注意:** `setMargin()`和`setWidth()`选择一个即可
 

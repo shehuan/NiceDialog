@@ -1,11 +1,10 @@
 package com.othershe.nicedialog;
 
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 
 public class NiceDialog extends BaseNiceDialog {
-
-    @LayoutRes
-    private int layoutId;
     private ViewConvertListener convertListener;
 
     public static NiceDialog init() {
@@ -16,7 +15,6 @@ public class NiceDialog extends BaseNiceDialog {
     public int intLayoutId() {
         return layoutId;
     }
-
 
     @Override
     public void convertView(ViewHolder holder, BaseNiceDialog dialog) {
@@ -34,5 +32,24 @@ public class NiceDialog extends BaseNiceDialog {
     public NiceDialog setConvertListener(ViewConvertListener convertListener) {
         this.convertListener = convertListener;
         return this;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            convertListener = (ViewConvertListener) savedInstanceState.getSerializable("listener");
+        }
+    }
+
+    /**
+     * 保存接口
+     *
+     * @param outState
+     */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("listener", convertListener);
     }
 }

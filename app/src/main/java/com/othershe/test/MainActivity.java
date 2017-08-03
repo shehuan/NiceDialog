@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.NiceDialog;
@@ -27,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
                 .setConvertListener(new ViewConvertListener() {
                     @Override
                     public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
-
+                        holder.setOnClickListener(R.id.wechat, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Toast.makeText(MainActivity.this, "分享成功", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 })
                 .setDimAmount(0.3f)

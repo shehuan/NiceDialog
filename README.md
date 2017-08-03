@@ -1,7 +1,8 @@
 # NiceDialog
 
 ### 简介：
-基于DialogFragment的扩展，让dialog的使用更方便
+* 基于DialogFragment的扩展，让dialog的使用更方便
+* 原理：<http://www.jianshu.com/p/0529433d4522>
 ### 示例预览：
 ![](https://github.com/Othershe/NiceDialog/blob/master/image/share.gif) ![](https://github.com/Othershe/NiceDialog/blob/master/image/set.gif)
 ![](https://github.com/Othershe/NiceDialog/blob/master/image/commit.gif) ![](https://github.com/Othershe/NiceDialog/blob/master/image/red_packet.gif)
@@ -21,7 +22,7 @@ allprojects {
 **Step 2. 添加项目依赖**
 ``` gradle
 dependencies {
-        compile 'com.github.Othershe:NiceDialog:1.0.0'
+        compile 'com.github.Othershe:NiceDialog:1.1.0'
 }
 ```
 **Step 3. 配置、展示dialog**

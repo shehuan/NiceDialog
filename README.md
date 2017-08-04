@@ -4,9 +4,10 @@
 * 基于DialogFragment的扩展，让dialog的使用更方便
 * 原理：<http://www.jianshu.com/p/0529433d4522>
 ### 示例预览：
-![](https://github.com/Othershe/NiceDialog/blob/master/image/share.gif) ![](https://github.com/Othershe/NiceDialog/blob/master/image/set.gif)
-![](https://github.com/Othershe/NiceDialog/blob/master/image/commit.gif) ![](https://github.com/Othershe/NiceDialog/blob/master/image/red_packet.gif)
-![](https://github.com/Othershe/NiceDialog/blob/master/image/loading.gif) ![](https://github.com/Othershe/NiceDialog/blob/master/image/confirm.gif)
+
+|![](image/share.gif)|![](image/set.gif)|![](image/commit.gif)|
+|---|---|---|
+|![](image/red_packet.gif)|![](image/loading.gif)|![](image/confirm.gif)|
 
 ### 基本用法：
 **Step 1. 添加JitPack仓库**

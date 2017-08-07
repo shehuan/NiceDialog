@@ -42,7 +42,7 @@ NiceDialog.init()
           .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度
           .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
           .setOutCancel(false)     //点击dialog外是否可取消，默认true
-          .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style
+          .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
           .show(getSupportFragmentManager());     //显示dialog
 ```
 **注意:** `setMargin()`和`setWidth()`选择一个即可

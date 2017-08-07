@@ -23,7 +23,7 @@ allprojects {
 **Step 2. 添加项目依赖**
 ``` gradle
 dependencies {
-        compile 'com.github.Othershe:NiceDialog:1.1.0'
+        compile 'com.github.Othershe:NiceDialog:1.1.1'
 }
 ```
 **Step 3. 配置、展示dialog**

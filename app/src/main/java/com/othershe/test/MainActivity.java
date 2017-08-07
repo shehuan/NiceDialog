@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setDimAmount(0.3f)
                 .setShowBottom(true)
-                .setAnimStyle(R.style.EnterExitAnimation)
                 .show(getSupportFragmentManager());
     }
 
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setShowBottom(true)
                 .setHeight(310)
-                .setAnimStyle(R.style.EnterExitAnimation)
                 .show(getSupportFragmentManager());
     }
 
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setShowBottom(true)
-                .setAnimStyle(R.style.EnterExitAnimation)
                 .show(getSupportFragmentManager());
     }
 

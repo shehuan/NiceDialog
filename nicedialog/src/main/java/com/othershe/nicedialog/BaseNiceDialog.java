@@ -92,15 +92,17 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private void initParams() {
         Window window = getDialog().getWindow();
         if (window != null) {
-            //设置dialog进入、退出的动画
-            window.setWindowAnimations(animStyle);
             WindowManager.LayoutParams lp = window.getAttributes();
             //调节灰色背景透明度[0-1]，默认0.5f
             lp.dimAmount = dimAmount;
             //是否在底部显示
             if (showBottom) {
                 lp.gravity = Gravity.BOTTOM;
+                if (animStyle == 0) {
+                    animStyle = R.style.DefaultAnimation;
+                }
             }
+
             //设置dialog宽度
             if (width == 0) {
                 lp.width = Utils.getScreenWidth(getContext()) - 2 * Utils.dp2px(getContext(), margin);
@@ -114,6 +116,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
                 lp.height = Utils.dp2px(getContext(), height);
             }
 
+            //设置dialog进入、退出的动画
+            window.setWindowAnimations(animStyle);
             window.setAttributes(lp);
         }
         setCancelable(outCancel);

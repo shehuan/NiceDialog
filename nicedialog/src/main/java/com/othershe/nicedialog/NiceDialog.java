@@ -38,7 +38,7 @@ public class NiceDialog extends BaseNiceDialog {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            convertListener = (ViewConvertListener) savedInstanceState.getSerializable("listener");
+            convertListener = savedInstanceState.getParcelable("listener");
         }
     }
 
@@ -50,6 +50,6 @@ public class NiceDialog extends BaseNiceDialog {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("listener", convertListener);
+        outState.putParcelable("listener", convertListener);
     }
 }

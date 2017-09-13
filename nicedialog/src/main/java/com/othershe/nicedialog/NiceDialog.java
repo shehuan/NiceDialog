@@ -52,4 +52,10 @@ public class NiceDialog extends BaseNiceDialog {
         super.onSaveInstanceState(outState);
         outState.putParcelable("listener", convertListener);
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        convertListener = null;
+    }
 }

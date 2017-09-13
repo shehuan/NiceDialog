@@ -23,7 +23,7 @@ allprojects {
 **Step 2. 添加项目依赖**
 ``` gradle
 dependencies {
-        compile 'com.github.Othershe:NiceDialog:1.1.2'
+        compile 'com.github.Othershe:NiceDialog:1.1.3'
 }
 ```
 **Step 3. 配置、展示dialog**
@@ -39,7 +39,7 @@ NiceDialog.init()
           .setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
           .setShowBottom(true)     //是否在底部显示dialog，默认flase
           .setMargin()     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
-          .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度
+          .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
           .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
           .setOutCancel(false)     //点击dialog外是否可取消，默认true
           .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)

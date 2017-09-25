@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -162,7 +163,12 @@ public abstract class BaseNiceDialog extends DialogFragment {
     }
 
     public BaseNiceDialog show(FragmentManager manager) {
-        super.show(manager, String.valueOf(System.currentTimeMillis()));
+        FragmentTransaction ft = manager.beginTransaction();
+        if (this.isAdded()) {
+            ft.remove(this).commit();
+        }
+        ft.add(this, String.valueOf(System.currentTimeMillis()));
+        ft.commitAllowingStateLoss();
         return this;
     }
 }

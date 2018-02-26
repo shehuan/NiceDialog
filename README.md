@@ -11,7 +11,8 @@
 
 ### 基本用法：
 **Step 1. 添加JitPack仓库**
-在当前项目等根目录下的 `build.gradle` 文件中添加如下内容:
+
+在当前项目根目录下的 `build.gradle` 文件中添加如下内容:
 ``` gradle
 allprojects {
     repositories {

@@ -19,7 +19,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
     private static final String DIM = "dim_amount";
-    private static final String BOTTOM = "show_bottom";
+    private static final String POSITION = "position";
     private static final String CANCEL = "out_cancel";
     private static final String ANIM = "anim_style";
     private static final String LAYOUT = "layout_id";
@@ -28,7 +28,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private int width;//宽度
     private int height;//高度
     private float dimAmount = 0.5f;//灰度深浅
-    private boolean showBottom;//是否底部显示
+    private int position;//显示的位置
     private boolean outCancel = true;//是否点击外部取消
     @StyleRes
     private int animStyle;
@@ -51,7 +51,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
             width = savedInstanceState.getInt(WIDTH);
             height = savedInstanceState.getInt(HEIGHT);
             dimAmount = savedInstanceState.getFloat(DIM);
-            showBottom = savedInstanceState.getBoolean(BOTTOM);
+            position = savedInstanceState.getInt(POSITION);
             outCancel = savedInstanceState.getBoolean(CANCEL);
             animStyle = savedInstanceState.getInt(ANIM);
             layoutId = savedInstanceState.getInt(LAYOUT);
@@ -84,7 +84,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
         outState.putInt(WIDTH, width);
         outState.putInt(HEIGHT, height);
         outState.putFloat(DIM, dimAmount);
-        outState.putBoolean(BOTTOM, showBottom);
+        outState.putInt(POSITION, position);
         outState.putBoolean(CANCEL, outCancel);
         outState.putInt(ANIM, animStyle);
         outState.putInt(LAYOUT, layoutId);
@@ -96,9 +96,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
             WindowManager.LayoutParams lp = window.getAttributes();
             //调节灰色背景透明度[0-1]，默认0.5f
             lp.dimAmount = dimAmount;
-            //是否在底部显示
-            if (showBottom) {
-                lp.gravity = Gravity.BOTTOM;
+            lp.gravity = position;
+            if (position == Gravity.BOTTOM) {
                 if (animStyle == 0) {
                     animStyle = R.style.DefaultAnimation;
                 }
@@ -147,8 +146,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
-    public BaseNiceDialog setShowBottom(boolean showBottom) {
-        this.showBottom = showBottom;
+    public BaseNiceDialog setPosition(int position) {
+        this.position = position;
         return this;
     }
 

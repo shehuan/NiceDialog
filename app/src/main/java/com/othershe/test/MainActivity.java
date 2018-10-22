@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setDimAmount(0.3f)
-                .setPosition(Gravity.RIGHT)
+                .setShowBottom(true)
                 .show(getSupportFragmentManager());
     }
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 })
-                .setPosition(Gravity.BOTTOM)
+                .setShowBottom(true)
                 .setHeight(310)
                 .show(getSupportFragmentManager());
     }
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 })
-                .setPosition(Gravity.BOTTOM)
+                .setShowBottom(true)
                 .show(getSupportFragmentManager());
     }
 

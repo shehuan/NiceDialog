@@ -1,4 +1,4 @@
-package com.othershe.nicedialog;
+package com.shehuan.nicedialog;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

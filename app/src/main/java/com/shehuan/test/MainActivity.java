@@ -1,4 +1,4 @@
-package com.othershe.test;
+package com.shehuan.test;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.othershe.nicedialog.BaseNiceDialog;
-import com.othershe.nicedialog.NiceDialog;
-import com.othershe.nicedialog.ViewConvertListener;
-import com.othershe.nicedialog.ViewHolder;
+import com.shehuan.nicedialog.BaseNiceDialog;
+import com.shehuan.nicedialog.NiceDialog;
+import com.shehuan.nicedialog.ViewConvertListener;
+import com.shehuan.nicedialog.ViewHolder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 .setWidth(100)
                 .setHeight(100)
                 .setDimAmount(0)
+                .setTheme(R.style.MyDialog)
                 .show(getSupportFragmentManager());
     }
 

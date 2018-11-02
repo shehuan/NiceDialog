@@ -24,7 +24,7 @@ allprojects {
 **Step 2. 添加项目依赖**
 ``` gradle
 dependencies {
-        compile 'com.github.SheHuan:NiceDialog:1.1.6'
+        compile 'com.github.SheHuan:NiceDialog:1.1.8'
 }
 ```
 **Step 3. 配置、展示dialog**
@@ -43,6 +43,7 @@ NiceDialog.init()
           .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
           .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
           .setOutCancel(false)     //点击dialog外是否可取消，默认true
+          .setTheme(R.style.MyDialog) // 设置dialog主题，默认主题继承自Theme.AppCompat.Light.Dialog
           .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
           .show(getSupportFragmentManager());     //显示dialog
 ```

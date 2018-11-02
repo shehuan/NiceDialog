@@ -20,4 +20,8 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="MyDialog" parent="NiceDialogStyle">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

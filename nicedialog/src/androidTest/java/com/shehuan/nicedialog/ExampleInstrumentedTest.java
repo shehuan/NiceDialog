@@ -1,4 +1,4 @@
-package com.othershe.nicedialog;
+package com.shehuan.nicedialog;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

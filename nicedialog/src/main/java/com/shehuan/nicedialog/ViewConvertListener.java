@@ -1,4 +1,4 @@
-package com.othershe.nicedialog;
+package com.shehuan.nicedialog;
 
 import android.os.Parcel;
 import android.os.Parcelable;

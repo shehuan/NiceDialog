@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
-        applicationId "com.othershe.commit_layout"
-        minSdkVersion 11
-        targetSdkVersion 25
+        applicationId "com.othershe.test"
+        minSdkVersion 15
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.commit_layout.runner.AndroidJUnitRunner"
@@ -20,8 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':nicedialog')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':nicedialog')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 }

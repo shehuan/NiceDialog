@@ -1,4 +1,4 @@
-package com.othershe.nicedialog;
+package com.shehuan.nicedialog;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -31,6 +31,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private boolean showBottom;//是否底部显示
     private boolean outCancel = true;//是否点击外部取消
     @StyleRes
+    private int theme; // dialog主题
+    @StyleRes
     private int animStyle;
     @LayoutRes
     protected int layoutId;
@@ -42,7 +44,10 @@ public abstract class BaseNiceDialog extends DialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.NiceDialog);
+        if (theme == 0) {
+            theme = R.style.NiceDialogStyle;
+        }
+        setStyle(DialogFragment.STYLE_NO_TITLE, theme);
         layoutId = intLayoutId();
 
         //恢复保存的数据
@@ -154,6 +159,11 @@ public abstract class BaseNiceDialog extends DialogFragment {
 
     public BaseNiceDialog setOutCancel(boolean outCancel) {
         this.outCancel = outCancel;
+        return this;
+    }
+
+    public BaseNiceDialog setTheme(@StyleRes int theme) {
+        this.theme = theme;
         return this;
     }
 

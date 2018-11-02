@@ -1,4 +1,4 @@
-package com.othershe.test;
+package com.shehuan.test;
 
 import org.junit.Test;
 

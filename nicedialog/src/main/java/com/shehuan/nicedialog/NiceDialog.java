@@ -3,12 +3,18 @@ package com.shehuan.nicedialog;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 
 public class NiceDialog extends BaseNiceDialog {
     private ViewConvertListener convertListener;
 
     public static NiceDialog init() {
         return new NiceDialog();
+    }
+
+    @Override
+    public int initTheme() {
+        return theme;
     }
 
     @Override
@@ -23,6 +29,10 @@ public class NiceDialog extends BaseNiceDialog {
         }
     }
 
+    public NiceDialog setTheme(@StyleRes int theme) {
+        this.theme = theme;
+        return this;
+    }
 
     public NiceDialog setLayoutId(@LayoutRes int layoutId) {
         this.layoutId = layoutId;

@@ -95,14 +95,13 @@ public class MainActivity extends AppCompatActivity {
                 .show(getSupportFragmentManager());
     }
 
-
     public void showDialog4(View view) {
         NiceDialog.init()
                 .setLayoutId(R.layout.loading_layout)
+                .setTheme(R.style.MyDialog)
                 .setWidth(100)
                 .setHeight(100)
                 .setDimAmount(0)
-                .setTheme(R.style.MyDialog)
                 .show(getSupportFragmentManager());
     }
 

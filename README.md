@@ -31,6 +31,7 @@ dependencies {
 ```java
 NiceDialog.init()
           .setLayoutId(R.layout.dialog)     //设置dialog布局文件
+          .setTheme(R.style.MyDialog) // 设置dialog主题，默认主题继承自Theme.AppCompat.Light.Dialog
           .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
               @Override
               public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
@@ -43,7 +44,6 @@ NiceDialog.init()
           .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
           .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
           .setOutCancel(false)     //点击dialog外是否可取消，默认true
-          .setTheme(R.style.MyDialog) // 设置dialog主题，默认主题继承自Theme.AppCompat.Light.Dialog
           .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
           .show(getSupportFragmentManager());     //显示dialog
 ```

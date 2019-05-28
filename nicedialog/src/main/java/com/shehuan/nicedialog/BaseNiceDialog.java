@@ -20,7 +20,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
     private static final String DIM = "dim_amount";
-    private static final String BOTTOM = "show_bottom";
+    private static final String GRAVITY = "gravity";
     private static final String CANCEL = "out_cancel";
     private static final String THEME = "theme";
     private static final String ANIM = "anim_style";
@@ -30,7 +30,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private int width;//宽度
     private int height;//高度
     private float dimAmount = 0.5f;//灰度深浅
-    private boolean showBottom;//是否底部显示
+    private int gravity = Gravity.CENTER;//显示的位置
     private boolean outCancel = true;//是否点击外部取消
     @StyleRes
     protected int theme = R.style.NiceDialogStyle; // dialog主题
@@ -58,7 +58,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
             width = savedInstanceState.getInt(WIDTH);
             height = savedInstanceState.getInt(HEIGHT);
             dimAmount = savedInstanceState.getFloat(DIM);
-            showBottom = savedInstanceState.getBoolean(BOTTOM);
+            gravity = savedInstanceState.getInt(GRAVITY);
             outCancel = savedInstanceState.getBoolean(CANCEL);
             theme = savedInstanceState.getInt(THEME);
             animStyle = savedInstanceState.getInt(ANIM);
@@ -93,7 +93,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
         outState.putInt(WIDTH, width);
         outState.putInt(HEIGHT, height);
         outState.putFloat(DIM, dimAmount);
-        outState.putBoolean(BOTTOM, showBottom);
+        outState.putInt(GRAVITY, gravity);
         outState.putBoolean(CANCEL, outCancel);
         outState.putInt(THEME, theme);
         outState.putInt(ANIM, animStyle);
@@ -106,12 +106,37 @@ public abstract class BaseNiceDialog extends DialogFragment {
             WindowManager.LayoutParams lp = window.getAttributes();
             //调节灰色背景透明度[0-1]，默认0.5f
             lp.dimAmount = dimAmount;
-            //是否在底部显示
-            if (showBottom) {
-                lp.gravity = Gravity.BOTTOM;
-                if (animStyle == 0) {
-                    animStyle = R.style.DefaultAnimation;
-                }
+            if (gravity != 0) {
+                lp.gravity = gravity;
+            }
+            switch (gravity) {
+                case Gravity.LEFT:
+                case (Gravity.LEFT | Gravity.BOTTOM):
+                case (Gravity.LEFT | Gravity.TOP):
+                    if (animStyle == 0) {
+                        animStyle = R.style.LeftAnimation;
+                    }
+                    break;
+                case Gravity.TOP:
+                    if (animStyle == 0) {
+                        animStyle = R.style.TopAnimation;
+                    }
+                    break;
+                case Gravity.RIGHT:
+                case (Gravity.RIGHT | Gravity.BOTTOM):
+                case (Gravity.RIGHT | Gravity.TOP):
+                    if (animStyle == 0) {
+                        animStyle = R.style.RightAnimation;
+                    }
+                    break;
+                case Gravity.BOTTOM:
+                    if (animStyle == 0) {
+                        animStyle = R.style.BottomAnimation;
+                    }
+                    break;
+                default:
+                    break;
+
             }
 
             //设置dialog宽度
@@ -157,8 +182,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
-    public BaseNiceDialog setShowBottom(boolean showBottom) {
-        this.showBottom = showBottom;
+    public BaseNiceDialog setGravity(int gravity) {
+        this.gravity = gravity;
         return this;
     }
 

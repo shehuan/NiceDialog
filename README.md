@@ -24,7 +24,7 @@ allprojects {
 **Step 2. 添加项目依赖**
 ``` gradle
 dependencies {
-        compile 'com.github.SheHuan:NiceDialog:1.1.9'
+        implementation 'com.github.SheHuan:NiceDialog:1.2.0'
 }
 ```
 **Step 3. 配置、展示dialog**
@@ -39,12 +39,12 @@ NiceDialog.init()
               }
           })
           .setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
-          .setShowBottom(true)     //是否在底部显示dialog，默认flase
+          .setGravity()     //可选，设置dialog的位置，默认居中，可通过系统Gravity的类的常量修改，例如Gravity.BOTTOM（底部），Gravity.Right（右边），Gravity.BOTTOM|Gravity.Right（右下）
           .setMargin()     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
           .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
           .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
           .setOutCancel(false)     //点击dialog外是否可取消，默认true
-          .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的动画style(底部显示的dialog有默认动画)
+          .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的自定义动画；根据设置的Gravity，默认提供了左、上、右、下位置进入退出的动画
           .show(getSupportFragmentManager());     //显示dialog
 ```
 **注意:** `setMargin()`和`setWidth()`选择一个即可

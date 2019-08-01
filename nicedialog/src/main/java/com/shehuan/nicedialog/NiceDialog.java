@@ -13,12 +13,12 @@ public class NiceDialog extends BaseNiceDialog {
     }
 
     @Override
-    public int initTheme() {
+    public int getDialogTheme() {
         return theme;
     }
 
     @Override
-    public int intLayoutId() {
+    public int getLayoutId() {
         return layoutId;
     }
 

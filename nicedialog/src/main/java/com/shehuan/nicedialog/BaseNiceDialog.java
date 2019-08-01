@@ -1,5 +1,6 @@
 package com.shehuan.nicedialog;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,18 +41,24 @@ public abstract class BaseNiceDialog extends DialogFragment {
     @LayoutRes
     protected int layoutId;
 
-    public abstract int intLayoutId();
+    private View mView;
+
+    private static final int DIALOG_DEFAULT_SIZE_FLAG = 0;
+    private static final int DIALOG_WRAP_CONTENT_FLAG = -1;
+    private static final int DIALOG_MATCH_PARENT_FLAG = -2;
+
+    public abstract int getLayoutId();
 
     public abstract void convertView(ViewHolder holder, BaseNiceDialog dialog);
 
-    public int initTheme() {
+    public int getDialogTheme() {
         return theme;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(DialogFragment.STYLE_NO_TITLE, initTheme());
+        setStyle(DialogFragment.STYLE_NO_TITLE, getDialogTheme());
 
         //恢复保存的数据
         if (savedInstanceState != null) {
@@ -69,10 +77,10 @@ public abstract class BaseNiceDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        layoutId = intLayoutId();
-        View view = inflater.inflate(layoutId, container, false);
-        convertView(ViewHolder.create(view), this);
-        return view;
+        layoutId = getLayoutId();
+        mView = inflater.inflate(layoutId, container, false);
+        convertView(ViewHolder.create(mView), this);
+        return mView;
     }
 
     @Override
@@ -110,9 +118,9 @@ public abstract class BaseNiceDialog extends DialogFragment {
                 lp.gravity = gravity;
             }
             switch (gravity) {
-                case Gravity.LEFT:
-                case (Gravity.LEFT | Gravity.BOTTOM):
-                case (Gravity.LEFT | Gravity.TOP):
+                case Gravity.START:
+                case (Gravity.START | Gravity.BOTTOM):
+                case (Gravity.START | Gravity.TOP):
                     if (animStyle == 0) {
                         animStyle = R.style.LeftAnimation;
                     }
@@ -122,9 +130,9 @@ public abstract class BaseNiceDialog extends DialogFragment {
                         animStyle = R.style.TopAnimation;
                     }
                     break;
-                case Gravity.RIGHT:
-                case (Gravity.RIGHT | Gravity.BOTTOM):
-                case (Gravity.RIGHT | Gravity.TOP):
+                case Gravity.END:
+                case (Gravity.END | Gravity.BOTTOM):
+                case (Gravity.END | Gravity.TOP):
                     if (animStyle == 0) {
                         animStyle = R.style.RightAnimation;
                     }
@@ -140,40 +148,57 @@ public abstract class BaseNiceDialog extends DialogFragment {
             }
 
             //设置dialog宽度
-            if (width == 0) {
-                lp.width = Utils.getScreenWidth(getContext()) - 2 * Utils.dp2px(getContext(), margin);
-            } else if (width == -1) {
+            if (width == DIALOG_DEFAULT_SIZE_FLAG) {
+                lp.width = getScreenWidth(getContext()) - 2 * dp2px(getContext(), margin);
+            } else if (width == DIALOG_WRAP_CONTENT_FLAG) {
                 lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            } else if (width == DIALOG_MATCH_PARENT_FLAG) {
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             } else {
-                lp.width = Utils.dp2px(getContext(), width);
+                lp.width = dp2px(getContext(), width);
             }
 
             //设置dialog高度
-            if (height == 0) {
+            if (height == DIALOG_DEFAULT_SIZE_FLAG) {
                 lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            } else if (height == DIALOG_MATCH_PARENT_FLAG) {
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
             } else {
-                lp.height = Utils.dp2px(getContext(), height);
+                lp.height = dp2px(getContext(), height);
             }
 
             //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
-            window.setAttributes(lp);
         }
         setCancelable(outCancel);
     }
 
-    public BaseNiceDialog setMargin(int margin) {
-        this.margin = margin;
+    public View getDialogView() {
+        return mView;
+    }
+
+    public BaseNiceDialog setMargin(int marginDp) {
+        this.margin = marginDp;
         return this;
     }
 
-    public BaseNiceDialog setWidth(int width) {
-        this.width = width;
+    public BaseNiceDialog setWidth(int widthDp) {
+        this.width = widthDp;
         return this;
     }
 
-    public BaseNiceDialog setHeight(int height) {
-        this.height = height;
+    public BaseNiceDialog setHeight(int heightDp) {
+        this.height = heightDp;
+        return this;
+    }
+
+    public BaseNiceDialog setHeightMatchParent() {
+        this.height = DIALOG_MATCH_PARENT_FLAG;
+        return this;
+    }
+
+    public BaseNiceDialog setWidthMatchParent() {
+        this.width = DIALOG_MATCH_PARENT_FLAG;
         return this;
     }
 
@@ -205,5 +230,16 @@ public abstract class BaseNiceDialog extends DialogFragment {
         ft.add(this, String.valueOf(System.currentTimeMillis()));
         ft.commitAllowingStateLoss();
         return this;
+    }
+
+
+    public int dp2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
+    public int getScreenWidth(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return displayMetrics.widthPixels;
     }
 }

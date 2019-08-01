@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public int intLayoutId() {
+        public int getLayoutId() {
             return R.layout.confirm_layout;
         }
 

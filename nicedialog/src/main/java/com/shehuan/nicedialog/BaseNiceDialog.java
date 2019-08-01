@@ -175,7 +175,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
         getDialog().setCanceledOnTouchOutside(outCancel);
     }
 
-    public View getDialogView() {
+    protected View getDialogView() {
         return mView;
     }
 

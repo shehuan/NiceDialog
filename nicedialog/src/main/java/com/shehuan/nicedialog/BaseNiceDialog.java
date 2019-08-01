@@ -33,7 +33,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private int height;//高度
     private float dimAmount = 0.5f;//灰度深浅
     private int gravity = Gravity.CENTER;//显示的位置
-    private boolean outCancel = true;//是否点击外部取消
+    private boolean outCancel = false;//是否点击外部取消
     @StyleRes
     protected int theme = R.style.NiceDialogStyle; // dialog主题
     @StyleRes
@@ -46,6 +46,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private static final int DIALOG_DEFAULT_SIZE_FLAG = 0;
     private static final int DIALOG_WRAP_CONTENT_FLAG = -1;
     private static final int DIALOG_MATCH_PARENT_FLAG = -2;
+    private boolean cancelable = true;
 
     public abstract int getLayoutId();
 
@@ -170,7 +171,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
             //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
         }
-        setCancelable(outCancel);
+        setCancelable(cancelable);
+        getDialog().setCanceledOnTouchOutside(outCancel);
     }
 
     public View getDialogView() {
@@ -212,7 +214,12 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
-    public BaseNiceDialog setOutCancel(boolean outCancel) {
+    public BaseNiceDialog setCancel(boolean cancelable) {
+        this.cancelable = cancelable;
+        return this;
+    }
+
+    public BaseNiceDialog setCanceledOnTouchOutside(boolean outCancel) {
         this.outCancel = outCancel;
         return this;
     }

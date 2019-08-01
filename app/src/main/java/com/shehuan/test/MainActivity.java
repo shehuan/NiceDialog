@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setWidth(210)
-                .setOutCancel(false)
+                .setCanceledOnTouchOutside(false)
                 .setAnimStyle(R.style.EnterExitAnimation)
                 .show(getSupportFragmentManager());
     }
@@ -109,14 +109,14 @@ public class MainActivity extends AppCompatActivity {
     public void showDialog5(View view) {
         ConfirmDialog.newInstance("1")
                 .setMargin(60)
-                .setOutCancel(false)
+                .setCanceledOnTouchOutside(false)
                 .show(getSupportFragmentManager());
     }
 
     public void showDialog6(View view) {
         ConfirmDialog.newInstance("2")
                 .setMargin(60)
-                .setOutCancel(false)
+                .setCanceledOnTouchOutside(false)
                 .show(getSupportFragmentManager());
     }
 

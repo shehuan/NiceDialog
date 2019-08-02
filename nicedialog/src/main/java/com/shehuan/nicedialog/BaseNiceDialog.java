@@ -175,10 +175,6 @@ public abstract class BaseNiceDialog extends DialogFragment {
         getDialog().setCanceledOnTouchOutside(outCancel);
     }
 
-    protected View getDialogView() {
-        return mView;
-    }
-
     public BaseNiceDialog setMargin(int marginDp) {
         this.margin = marginDp;
         return this;

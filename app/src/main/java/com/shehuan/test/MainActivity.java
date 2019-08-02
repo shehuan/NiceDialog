@@ -33,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(MainActivity.this, "分享成功", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
                             }
                         });
                     }
-                })
+                }).setCancel(false)
                 .setDimAmount(0.3f)
                 .setGravity(Gravity.BOTTOM)
                 .show(getSupportFragmentManager());

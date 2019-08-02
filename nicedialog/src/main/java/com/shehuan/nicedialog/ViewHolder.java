@@ -1,5 +1,8 @@
 package com.shehuan.nicedialog;
 
+import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +21,7 @@ public class ViewHolder {
         return new ViewHolder(view);
     }
 
+    @SuppressWarnings("unchecked")
     public <T extends View> T getView(int viewId) {
         View view = views.get(viewId);
         if (view == null) {
@@ -32,18 +36,24 @@ public class ViewHolder {
     }
 
     public void setText(int viewId, String text) {
-        TextView textView = getView(viewId);
-        textView.setText(text);
+        View view = getView(viewId);
+        if (view instanceof TextView) {
+            ((TextView) view).setText(text);
+        }
     }
 
-    public void setText(int viewId, int textId) {
-        TextView textView = getView(viewId);
-        textView.setText(textId);
+    public void setText(int viewId, @StringRes int textId) {
+        View view = getView(viewId);
+        if (view instanceof TextView) {
+            ((TextView) view).setText(textId);
+        }
     }
 
-    public void setTextColor(int viewId, int colorId) {
-        TextView textView = getView(viewId);
-        textView.setTextColor(colorId);
+    public void setTextColor(int viewId, @ColorInt int colorId) {
+        View view = getView(viewId);
+        if (view instanceof TextView) {
+            ((TextView) view).setTextColor(colorId);
+        }
     }
 
     public void setOnClickListener(int viewId, View.OnClickListener clickListener) {
@@ -51,12 +61,12 @@ public class ViewHolder {
         view.setOnClickListener(clickListener);
     }
 
-    public void setBackgroundResource(int viewId, int resId) {
+    public void setBackgroundResource(int viewId, @DrawableRes int resId) {
         View view = getView(viewId);
         view.setBackgroundResource(resId);
     }
 
-    public void setBackgroundColor(int viewId, int colorId) {
+    public void setBackgroundColor(int viewId, @ColorInt int colorId) {
         View view = getView(viewId);
         view.setBackgroundColor(colorId);
     }

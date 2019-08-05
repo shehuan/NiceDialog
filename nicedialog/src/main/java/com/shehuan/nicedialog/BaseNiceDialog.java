@@ -23,7 +23,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private static final String HEIGHT = "height";
     private static final String DIM = "dim_amount";
     private static final String GRAVITY = "gravity";
-    private static final String CANCEL = "out_cancel";
+    private static final String TOUCH_OUT_CANCELABLE = "touch_out_cancelable";
+    private static final String BACK_CANCELABLE = "back_cancelable";
     private static final String THEME = "theme";
     private static final String ANIM = "anim_style";
     private static final String LAYOUT = "layout_id";
@@ -34,6 +35,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private float dimAmount = 0.5f;//灰度深浅
     private int gravity = Gravity.CENTER;//显示的位置
     private boolean touchoutCancelable = false;//是否点击外部取消
+    private boolean backCancelable = true;
     @StyleRes
     protected int theme = R.style.NiceDialogStyle; // dialog主题
     @StyleRes
@@ -44,7 +46,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private static final int DIALOG_DEFAULT_SIZE_FLAG = 0;
     private static final int DIALOG_WRAP_CONTENT_FLAG = -1;
     private static final int DIALOG_MATCH_PARENT_FLAG = -2;
-    private boolean backCancelable = true;
+
 
     public abstract int getLayoutId();
 
@@ -66,7 +68,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
             height = savedInstanceState.getInt(HEIGHT);
             dimAmount = savedInstanceState.getFloat(DIM);
             gravity = savedInstanceState.getInt(GRAVITY);
-            touchoutCancelable = savedInstanceState.getBoolean(CANCEL);
+            touchoutCancelable = savedInstanceState.getBoolean(TOUCH_OUT_CANCELABLE);
+            backCancelable = savedInstanceState.getBoolean(BACK_CANCELABLE);
             theme = savedInstanceState.getInt(THEME);
             animStyle = savedInstanceState.getInt(ANIM);
             layoutId = savedInstanceState.getInt(LAYOUT);
@@ -101,7 +104,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
         outState.putInt(HEIGHT, height);
         outState.putFloat(DIM, dimAmount);
         outState.putInt(GRAVITY, gravity);
-        outState.putBoolean(CANCEL, touchoutCancelable);
+        outState.putBoolean(TOUCH_OUT_CANCELABLE, touchoutCancelable);
+        outState.putBoolean(BACK_CANCELABLE, backCancelable);
         outState.putInt(THEME, theme);
         outState.putInt(ANIM, animStyle);
         outState.putInt(LAYOUT, layoutId);

@@ -33,7 +33,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private int height;//高度
     private float dimAmount = 0.5f;//灰度深浅
     private int gravity = Gravity.CENTER;//显示的位置
-    private boolean outCancelable = false;//是否点击外部取消
+    private boolean touchoutCancelable = false;//是否点击外部取消
     @StyleRes
     protected int theme = R.style.NiceDialogStyle; // dialog主题
     @StyleRes
@@ -66,7 +66,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
             height = savedInstanceState.getInt(HEIGHT);
             dimAmount = savedInstanceState.getFloat(DIM);
             gravity = savedInstanceState.getInt(GRAVITY);
-            outCancelable = savedInstanceState.getBoolean(CANCEL);
+            touchoutCancelable = savedInstanceState.getBoolean(CANCEL);
             theme = savedInstanceState.getInt(THEME);
             animStyle = savedInstanceState.getInt(ANIM);
             layoutId = savedInstanceState.getInt(LAYOUT);
@@ -101,7 +101,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
         outState.putInt(HEIGHT, height);
         outState.putFloat(DIM, dimAmount);
         outState.putInt(GRAVITY, gravity);
-        outState.putBoolean(CANCEL, outCancelable);
+        outState.putBoolean(CANCEL, touchoutCancelable);
         outState.putInt(THEME, theme);
         outState.putInt(ANIM, animStyle);
         outState.putInt(LAYOUT, layoutId);
@@ -170,7 +170,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
             window.setWindowAnimations(animStyle);
         }
         setCancelable(backCancelable);
-        getDialog().setCanceledOnTouchOutside(outCancelable);
+        getDialog().setCanceledOnTouchOutside(touchoutCancelable);
     }
 
     public BaseNiceDialog setMargin(int marginDp) {
@@ -228,11 +228,11 @@ public abstract class BaseNiceDialog extends DialogFragment {
     }
 
     /**
-     * @param outCancelable 点击屏幕是否可以取消dialog，默认值false
+     * @param touchoutCancelable 点击屏幕是否可以取消dialog，默认值false
      * @return BaseNiceDialog
      */
-    public BaseNiceDialog setCanceledOnTouchOutside(boolean outCancelable) {
-        this.outCancelable = outCancelable;
+    public BaseNiceDialog setCanceledOnTouchOutside(boolean touchoutCancelable) {
+        this.touchoutCancelable = touchoutCancelable;
         return this;
     }
 

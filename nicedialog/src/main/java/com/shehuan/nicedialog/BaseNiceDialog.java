@@ -33,7 +33,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private int height;//高度
     private float dimAmount = 0.5f;//灰度深浅
     private int gravity = Gravity.CENTER;//显示的位置
-    private boolean outCancel = false;//是否点击外部取消
+    private boolean outCancelable = false;//是否点击外部取消
     @StyleRes
     protected int theme = R.style.NiceDialogStyle; // dialog主题
     @StyleRes
@@ -41,12 +41,10 @@ public abstract class BaseNiceDialog extends DialogFragment {
     @LayoutRes
     protected int layoutId;
 
-    private View mView;
-
     private static final int DIALOG_DEFAULT_SIZE_FLAG = 0;
     private static final int DIALOG_WRAP_CONTENT_FLAG = -1;
     private static final int DIALOG_MATCH_PARENT_FLAG = -2;
-    private boolean cancelable = true;
+    private boolean backCancelable = true;
 
     public abstract int getLayoutId();
 
@@ -68,7 +66,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
             height = savedInstanceState.getInt(HEIGHT);
             dimAmount = savedInstanceState.getFloat(DIM);
             gravity = savedInstanceState.getInt(GRAVITY);
-            outCancel = savedInstanceState.getBoolean(CANCEL);
+            outCancelable = savedInstanceState.getBoolean(CANCEL);
             theme = savedInstanceState.getInt(THEME);
             animStyle = savedInstanceState.getInt(ANIM);
             layoutId = savedInstanceState.getInt(LAYOUT);
@@ -79,9 +77,9 @@ public abstract class BaseNiceDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         layoutId = getLayoutId();
-        mView = inflater.inflate(layoutId, container, false);
-        convertView(ViewHolder.create(mView), this);
-        return mView;
+        View view = inflater.inflate(layoutId, container, false);
+        convertView(ViewHolder.create(view), this);
+        return view;
     }
 
     @Override
@@ -103,7 +101,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
         outState.putInt(HEIGHT, height);
         outState.putFloat(DIM, dimAmount);
         outState.putInt(GRAVITY, gravity);
-        outState.putBoolean(CANCEL, outCancel);
+        outState.putBoolean(CANCEL, outCancelable);
         outState.putInt(THEME, theme);
         outState.putInt(ANIM, animStyle);
         outState.putInt(LAYOUT, layoutId);
@@ -171,8 +169,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
             //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
         }
-        setCancelable(cancelable);
-        getDialog().setCanceledOnTouchOutside(outCancel);
+        setCancelable(backCancelable);
+        getDialog().setCanceledOnTouchOutside(outCancelable);
     }
 
     public BaseNiceDialog setMargin(int marginDp) {
@@ -190,11 +188,21 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
+    /**
+     * 设置Dialog的高度为Match_Parent
+     *
+     * @return BaseNiceDialog
+     */
     public BaseNiceDialog setHeightMatchParent() {
         this.height = DIALOG_MATCH_PARENT_FLAG;
         return this;
     }
 
+    /**
+     * 设置Dialog的宽度为Match_Parent
+     *
+     * @return BaseNiceDialog
+     */
     public BaseNiceDialog setWidthMatchParent() {
         this.width = DIALOG_MATCH_PARENT_FLAG;
         return this;
@@ -210,13 +218,21 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
-    public BaseNiceDialog setCancel(boolean cancelable) {
-        this.cancelable = cancelable;
+    /**
+     * @param backCancelable 返回键是否可取消Dialog，默认值true
+     * @return BaseNiceDialog
+     */
+    public BaseNiceDialog setBackCancelable(boolean backCancelable) {
+        this.backCancelable = backCancelable;
         return this;
     }
 
-    public BaseNiceDialog setCanceledOnTouchOutside(boolean outCancel) {
-        this.outCancel = outCancel;
+    /**
+     * @param outCancelable 点击屏幕是否可以取消dialog，默认值false
+     * @return BaseNiceDialog
+     */
+    public BaseNiceDialog setCanceledOnTouchOutside(boolean outCancelable) {
+        this.outCancelable = outCancelable;
         return this;
     }
 

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-                }).setCancel(false)
+                }).setBackCancelable(false)
                 .setDimAmount(0.3f)
                 .setGravity(Gravity.BOTTOM)
                 .show(getSupportFragmentManager());

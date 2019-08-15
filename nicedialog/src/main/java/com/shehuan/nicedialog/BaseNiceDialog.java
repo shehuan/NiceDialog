@@ -112,8 +112,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
     }
 
     private void initParams() {
-        Window window = getDialog().getWindow();
-        if (window != null) {
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            Window window = getDialog().getWindow();
             WindowManager.LayoutParams lp = window.getAttributes();
             //调节灰色背景透明度[0-1]，默认0.5f
             lp.dimAmount = dimAmount;
@@ -172,9 +172,9 @@ public abstract class BaseNiceDialog extends DialogFragment {
 
             //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
+            setCancelable(backCancelable);
+            getDialog().setCanceledOnTouchOutside(touchoutCancelable);
         }
-        setCancelable(backCancelable);
-        getDialog().setCanceledOnTouchOutside(touchoutCancelable);
     }
 
     public BaseNiceDialog setMargin(int marginDp) {

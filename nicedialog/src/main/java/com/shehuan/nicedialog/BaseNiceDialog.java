@@ -9,7 +9,6 @@ import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +33,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
     private int height;//高度
     private float dimAmount = 0.5f;//灰度深浅
     private int gravity = Gravity.CENTER;//显示的位置
-    private boolean touchoutCancelable = false;//是否点击外部取消
+    private boolean mTouchOutCancelable = false;//是否点击外部取消
     private boolean backCancelable = true;
     @StyleRes
     protected int theme = R.style.NiceDialogStyle; // dialog主题
@@ -68,7 +67,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
             height = savedInstanceState.getInt(HEIGHT);
             dimAmount = savedInstanceState.getFloat(DIM);
             gravity = savedInstanceState.getInt(GRAVITY);
-            touchoutCancelable = savedInstanceState.getBoolean(TOUCH_OUT_CANCELABLE);
+            mTouchOutCancelable = savedInstanceState.getBoolean(TOUCH_OUT_CANCELABLE);
             backCancelable = savedInstanceState.getBoolean(BACK_CANCELABLE);
             theme = savedInstanceState.getInt(THEME);
             animStyle = savedInstanceState.getInt(ANIM);
@@ -97,14 +96,14 @@ public abstract class BaseNiceDialog extends DialogFragment {
      * @param outState
      */
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(MARGIN, margin);
         outState.putInt(WIDTH, width);
         outState.putInt(HEIGHT, height);
         outState.putFloat(DIM, dimAmount);
         outState.putInt(GRAVITY, gravity);
-        outState.putBoolean(TOUCH_OUT_CANCELABLE, touchoutCancelable);
+        outState.putBoolean(TOUCH_OUT_CANCELABLE, mTouchOutCancelable);
         outState.putBoolean(BACK_CANCELABLE, backCancelable);
         outState.putInt(THEME, theme);
         outState.putInt(ANIM, animStyle);
@@ -152,13 +151,13 @@ public abstract class BaseNiceDialog extends DialogFragment {
 
             //设置dialog宽度
             if (width == DIALOG_DEFAULT_SIZE_FLAG) {
-                lp.width = getScreenWidth(getContext()) - 2 * dp2px(getContext(), margin);
+                lp.width = getScreenWidth(getContext()) - 2 * margin;
             } else if (width == DIALOG_WRAP_CONTENT_FLAG) {
                 lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
             } else if (width == DIALOG_MATCH_PARENT_FLAG) {
                 lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             } else {
-                lp.width = dp2px(getContext(), width);
+                lp.width = width;
             }
 
             //设置dialog高度
@@ -167,23 +166,23 @@ public abstract class BaseNiceDialog extends DialogFragment {
             } else if (height == DIALOG_MATCH_PARENT_FLAG) {
                 lp.height = WindowManager.LayoutParams.MATCH_PARENT;
             } else {
-                lp.height = dp2px(getContext(), height);
+                lp.height = height;
             }
 
             //设置dialog进入、退出的动画
             window.setWindowAnimations(animStyle);
             setCancelable(backCancelable);
-            getDialog().setCanceledOnTouchOutside(touchoutCancelable);
+            getDialog().setCanceledOnTouchOutside(mTouchOutCancelable);
         }
     }
 
-    public BaseNiceDialog setMargin(int marginDp) {
-        this.margin = marginDp;
+    public BaseNiceDialog setMargin(int margin) {
+        this.margin = margin;
         return this;
     }
 
-    public BaseNiceDialog setWidth(int widthDp) {
-        this.width = widthDp;
+    public BaseNiceDialog setWidth(int width) {
+        this.width = width;
         return this;
     }
 
@@ -236,7 +235,7 @@ public abstract class BaseNiceDialog extends DialogFragment {
      * @return BaseNiceDialog
      */
     public BaseNiceDialog setCanceledOnTouchOutside(boolean touchoutCancelable) {
-        this.touchoutCancelable = touchoutCancelable;
+        this.mTouchOutCancelable = touchoutCancelable;
         return this;
     }
 
@@ -255,14 +254,8 @@ public abstract class BaseNiceDialog extends DialogFragment {
         return this;
     }
 
-
-    public int dp2px(Context context, float dipValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dipValue * scale + 0.5f);
-    }
-
     public int getScreenWidth(Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        return displayMetrics.widthPixels;
+        if (context == null) return 0;
+        return context.getResources().getDisplayMetrics().widthPixels;
     }
 }

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setGravity(Gravity.BOTTOM)
-                .setHeight(310)
+                .setHeight(dp2px(310))
                 .show(getSupportFragmentManager());
     }
 
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 })
-                .setWidth(210)
+                .setWidth(dp2px(210))
                 .setCanceledOnTouchOutside(false)
                 .setAnimStyle(R.style.EnterExitAnimation)
                 .show(getSupportFragmentManager());
@@ -101,22 +101,22 @@ public class MainActivity extends AppCompatActivity {
         NiceDialog.init()
                 .setLayoutId(R.layout.loading_layout)
                 .setTheme(R.style.MyDialog)
-                .setWidth(100)
-                .setHeight(100)
+                .setWidth(dp2px(100))
+                .setHeight(dp2px(100))
                 .setDimAmount(0)
                 .show(getSupportFragmentManager());
     }
 
     public void showDialog5(View view) {
         ConfirmDialog.newInstance("1")
-                .setMargin(60)
+                .setMargin(dp2px(60))
                 .setCanceledOnTouchOutside(false)
                 .show(getSupportFragmentManager());
     }
 
     public void showDialog6(View view) {
         ConfirmDialog.newInstance("2")
-                .setMargin(60)
+                .setMargin(dp2px(60))
                 .setCanceledOnTouchOutside(false)
                 .show(getSupportFragmentManager());
     }
@@ -171,4 +171,10 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
+    public int dp2px(float dipValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
 }

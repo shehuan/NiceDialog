@@ -1,18 +1,18 @@
 # NiceDialog
 
-### 简介：
-* 基于DialogFragment的扩展，让dialog的使用更方便
-* 原理：<http://www.jianshu.com/p/0529433d4522>
-### 示例预览：
+### Introduction:
+* Based on the extension of DialogFragment, the use of this dialog is more convenient
+* Principle: <http://www.jianshu.com/p/0529433d4522>
+### Sample preview:
 
 |![](image/share.gif)|![](image/set.gif)|![](image/commit.gif)|
 |---|---|---|
 |![](image/red_packet.gif)|![](image/loading.gif)|![](image/confirm.gif)|
 
-### 基本用法：
-**Step 1. 添加JitPack仓库**
+### Basic Usage：
+**Step 1. Add a JitPack repository**
 
-在当前项目根目录下的 `build.gradle` 文件中添加如下内容:
+Add the following to the build.gradle file in the current project root directory:
 ``` gradle
 allprojects {
     repositories {
@@ -21,36 +21,36 @@ allprojects {
     }
 }
 ```
-**Step 2. 添加项目依赖**
+**Step 2. Add project dependencies**
 ``` gradle
 dependencies {
         implementation 'com.github.SheHuan:NiceDialog:1.2.0'
 }
 ```
-**Step 3. 配置、展示dialog**
+**Step 3. Configure and display the dialog**
 ```java
 NiceDialog.init()
-          .setLayoutId(R.layout.dialog)     //设置dialog布局文件
-          .setTheme(R.style.MyDialog) // 设置dialog主题，默认主题继承自Theme.AppCompat.Light.Dialog
-          .setConvertListener(new ViewConvertListener() {     //进行相关View操作的回调
+          .setLayoutId(R.layout.dialog)     // Set the dialog layout file
+          .setTheme(R.style.MyDialog) // Set the dialog theme, the default theme is inherited from Theme.AppCompat.Light.Dialog
+          .setConvertListener(new ViewConvertListener() {     // Callback for related View operations
               @Override
               public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
 
               }
           })
-          .setDimAmount(0.3f)     //调节灰色背景透明度[0-1]，默认0.5f
-          .setGravity()     //可选，设置dialog的位置，默认居中，可通过系统Gravity的类的常量修改，例如Gravity.BOTTOM（底部），Gravity.Right（右边），Gravity.BOTTOM|Gravity.Right（右下）
-          .setMargin()     //dialog左右两边到屏幕边缘的距离（单位：dp），默认0dp
-          .setWidth()     //dialog宽度（单位：dp），默认为屏幕宽度，-1代表WRAP_CONTENT
-          .setHeight()     //dialog高度（单位：dp），默认为WRAP_CONTENT
-          .setOutCancel(false)     //点击dialog外是否可取消，默认true
-          .setAnimStyle(R.style.EnterExitAnimation)     //设置dialog进入、退出的自定义动画；根据设置的Gravity，默认提供了左、上、右、下位置进入退出的动画
-          .show(getSupportFragmentManager());     //显示dialog
+          .setDimAmount(0.3f)     // Adjust the background transparency [0-1], default 0.5f
+          .setGravity()     // Optional, set the dialog's position, default to center，Can be modified by the constants of the system Gravity class，For example Gravity.BOTTOM (bottom)，Gravity.Right（right），Gravity.BOTTOM|Gravity.Right（bottom right）
+          .setMargin()     // Distance from left and right to the edge of the screen (unit: dp), default 0dp
+          .setWidth()     // Dialog's width (unit: dp), default is the screen width, -1 stands for WRAP_CONTENT
+          .setHeight()     // Dialog's height (unit: dp), default is WRAP_CONTENT
+          .setOutCancel(false)     // You can cancel by clicking outside the dialog, the default is true
+          .setAnimStyle(R.style.EnterExitAnimation)     // Set the dialog to enter、exit custom animation; according to the set Gravity，By default, the left, top, right, and bottom positions are provided to enter the exit animation.
+          .show(getSupportFragmentManager());     // Display the dialog
 ```
-**注意:** `setMargin()`和`setWidth()`选择一个即可
+**Notes:** `setMargin()` and `setWidth()` to select one
 
-### 更多用法：
-##### 1、创建一个继承BaseNiceDialog的类，如果需要传参可仿照如下方式，也是就是常用的Fragment传参方式
+### More Usage：
+##### 1. Create a class that inherits from BaseNiceDialog. If you need to pass the parameters, you can follow the following method, which is also the common method of Fragment.
 ```java
 public class ConfirmDialog extends BaseNiceDialog {
         private String type;
@@ -81,7 +81,7 @@ public class ConfirmDialog extends BaseNiceDialog {
         }
     }
 ```
-##### 2、展示dialog
+##### 2. Show dialog
 ```java
 ConfirmDialog.newInstance("1")
              .setMargin(60)
